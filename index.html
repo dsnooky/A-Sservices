@@ -114,5 +114,15 @@
   <a href="https://facebook.com/sddrservices" class="btn">Message Us</a>
 </div>
 
-  </div></body>
+  </div>  <!-- Auto Popup -->  <div id="popup" style="position:fixed; bottom:20px; right:20px; background:#ffd700; color:#000; padding:15px 20px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.3); display:none; cursor:pointer; font-weight:600; z-index:999;">
+    Hi! Need help?
+  </div>  <script>
+    setTimeout(function() {
+      document.getElementById('popup').style.display = 'block';
+    }, 5000);
+
+    document.getElementById('popup').onclick = function() {
+      window.open('https://facebook.com/sddrservices', '_blank');
+    };
+  </script></body>
 </html>
