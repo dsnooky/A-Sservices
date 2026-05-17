@@ -1,128 +1,319 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A & S Store - One Stop Document Service</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #0a2a66;
-      color: #fff;
-    }
-    .container {
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-    .header {
-      text-align: center;
-      padding: 30px 10px;
-    }
-    .header h1 {
-      font-size: 48px;
-      margin: 0;
-    }
-    .header h2 {
-      background: #ffd700;
-      color: #000;
-      display: inline-block;
-      padding: 10px 20px;
-      margin-top: 10px;
-      border-radius: 8px;
-    }
-    .section {
-      margin: 30px 0;
-      padding: 20px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 15px;
-    }
-    .section h3 {
-      color: #ffd700;
-      margin-bottom: 10px;
-    }
-    .list {
-      line-height: 1.8;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 40px;
-      padding: 20px;
-      border-top: 1px solid rgba(255,255,255,0.2);
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 25px;
-      background: #ffd700;
-      color: #000;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: 600;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A&S Auto Price Calculator</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+padding:20px;
+}
+
+.container{
+max-width:550px;
+margin:auto;
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+padding:25px;
+border-radius:18px;
+border:1px solid rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+box-shadow:0 0 20px rgba(0,0,0,0.2);
+margin-bottom:20px;
+}
+
+h1{
+text-align:center;
+margin-bottom:20px;
+color:#00aaff;
+}
+
+h2{
+margin-bottom:10px;
+color:#00d4ff;
+}
+
+label{
+display:block;
+margin-top:15px;
+margin-bottom:5px;
+font-weight:bold;
+}
+
+select,
+input[type="number"]{
+width:100%;
+padding:12px;
+border:none;
+border-radius:10px;
+outline:none;
+font-size:16px;
+}
+
+.check{
+margin-top:15px;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.result{
+margin-top:25px;
+padding:15px;
+background:rgba(0,170,255,0.15);
+border-radius:12px;
+text-align:center;
+}
+
+.result h2{
+margin-top:10px;
+}
+
+.price-box{
+line-height:1.8;
+font-size:15px;
+}
+
+button{
+width:100%;
+margin-top:20px;
+padding:14px;
+border:none;
+border-radius:12px;
+background:#00aaff;
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.02);
+background:#0095dd;
+}
+
+.footer{
+text-align:center;
+margin-top:20px;
+font-size:14px;
+opacity:0.7;
+}
+
+</style>
 </head>
-<body>  <div class="container"><div class="header">
-  <h1>A & S STORE</h1>
-  <h2>ONE STOP DOCUMENT SERVICE</h2>
+
+<body>
+
+<div class="container">
+
+<!-- PRICE DETAILS -->
+
+<div class="card">
+
+<h2>📌 PRICE DETAILS</h2>
+
+<div class="price-box">
+
+<b>XEROX / PRINT (B&W)</b><br><br>
+
+SHORT / A4<br>
+• Text Only — ₱5<br>
+• Text + Image — ₱7<br>
+• Full Image — ₱10<br><br>
+
+LONG<br>
+• Text Only — ₱6<br>
+• Text + Image — ₱8<br>
+• Full Image — ₱12<br><br>
+
++ ₱2 Back-to-back<br><br>
+
+<hr><br>
+
+<b>COLOR PRINT</b><br><br>
+
+SHORT / A4<br>
+• Text Only — ₱7<br>
+• Text + Image — ₱15<br>
+• Full Image — ₱20<br><br>
+
+LONG<br>
+• Text Only — ₱8<br>
+• Text + Image — ₱18<br>
+• Full Image — ₱22<br><br>
+
++ ₱3 Back-to-back<br><br>
+
++ ₱5 Rush Fee
+
 </div>
 
-<div class="section">
-  <h3>PRINT • SCAN • COPY</h3>
-  <div class="list">
-    Black Print - ₱5<br>
-    Colored Print - ₱15–₱20<br>
-    Photocopy - ₱2–₱3<br>
-    Scan to PDF - ₱20<br>
-    Scan + Email - ₱25
-  </div>
 </div>
 
-<div class="section">
-  <h3>DOCUMENT ASSISTANCE</h3>
-  <div class="list">
-    Resume / Bio-data - ₱50–₱100<br>
-    Letter / Form Typing - ₱30–₱80<br>
-    Online Registration - ₱50–₱150
-  </div>
+<!-- CALCULATOR -->
+
+<div class="card">
+
+<h1>🧮 A&S Auto Price Calculator</h1>
+
+<label>Print Type</label>
+<select id="type">
+<option value="bw">Black & White</option>
+<option value="color">Colored</option>
+</select>
+
+<label>Paper Size</label>
+<select id="page">
+<option value="short">Short / A4</option>
+<option value="long">Long</option>
+</select>
+
+<label>Content Type</label>
+<select id="content">
+<option value="text">Text Only</option>
+<option value="mix">Text + Image</option>
+<option value="full">Full Image</option>
+</select>
+
+<label>Number of PCS</label>
+<input type="number" id="pcs" value="1" min="1">
+
+<div class="check">
+<input type="checkbox" id="back">
+<label for="back">Back-to-back</label>
 </div>
 
-<div class="section">
-  <h3>DIGITAL SERVICES</h3>
-  <div class="list">
-    GCash Cash-In<br>
-    GCash Cash-Out<br>
-    Bills Payment<br>
-    Mobile Load<br>
-    <em>Service Fee Applies</em>
-  </div>
+<div class="check">
+<input type="checkbox" id="rush">
+<label for="rush">Rush Print (+₱5)</label>
 </div>
 
-<div class="section">
-  <h3>PACKAGE DEALS</h3>
-  <div class="list">
-    Resume Package - ₱100 (Typing + Print)<br>
-    Student Package - ₱60 (Print + Staple + Cover)<br>
-    Government Package - ₱120 (Scan + Print + Assist)
-  </div>
+<div class="result">
+
+<p>Price Per Page</p>
+<h2>₱<span id="price">0</span></h2>
+
+<p>Total Amount</p>
+<h2>₱<span id="total">0</span></h2>
+
+</div>
+
+<button onclick="sendMessenger()">
+Order via Messenger
+</button>
+
 </div>
 
 <div class="footer">
-  <h3>FAST • AFFORDABLE • COMPLETE</h3>
-  <p>We Accept GCash</p>
-  <a href="https://facebook.com/sddrservices" class="btn">Message Us</a>
+A&S Store Printing Services
 </div>
 
-  </div>  <!-- Auto Popup -->  <div id="popup" style="position:fixed; bottom:20px; right:20px; background:#ffd700; color:#000; padding:15px 20px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.3); display:none; cursor:pointer; font-weight:600; z-index:999;">
-    Hi! Need help?
-  </div>  <script>
-    setTimeout(function() {
-      document.getElementById('popup').style.display = 'block';
-    }, 5000);
+</div>
 
-    document.getElementById('popup').onclick = function() {
-      window.open('https://facebook.com/sddrservices', '_blank');
-    };
-  </script></body>
+<script>
+
+const typeEl = document.getElementById("type");
+const pageEl = document.getElementById("page");
+const contentEl = document.getElementById("content");
+const pcsEl = document.getElementById("pcs");
+const backEl = document.getElementById("back");
+const rushEl = document.getElementById("rush");
+
+const priceEl = document.getElementById("price");
+const totalEl = document.getElementById("total");
+
+function calculate(){
+
+let price = 0;
+
+let type = typeEl.value;
+let page = pageEl.value;
+let content = contentEl.value;
+
+if(type === "bw"){
+
+if(page === "short"){
+price = content === "text" ? 5 :
+        content === "mix" ? 7 : 10;
+}
+
+else{
+price = content === "text" ? 6 :
+        content === "mix" ? 8 : 12;
+}
+
+if(backEl.checked){
+price += 2;
+}
+
+}
+
+if(type === "color"){
+
+if(page === "short"){
+price = content === "text" ? 7 :
+        content === "mix" ? 15 : 20;
+}
+
+else{
+price = content === "text" ? 8 :
+        content === "mix" ? 18 : 22;
+}
+
+if(backEl.checked){
+price += 3;
+}
+
+}
+
+if(rushEl.checked){
+price += 5;
+}
+
+let pcs = parseInt(pcsEl.value) || 1;
+
+let total = price * pcs;
+
+priceEl.innerText = price;
+totalEl.innerText = total;
+
+}
+
+[typeEl,pageEl,contentEl,pcsEl,backEl,rushEl]
+.forEach(element=>{
+
+element.addEventListener("change",calculate);
+element.addEventListener("input",calculate);
+
+});
+
+function sendMessenger(){
+
+window.open(
+"https://www.messenger.com/t/asmamburao",
+"_blank"
+);
+
+}
+
+calculate();
+
+</script>
+
+</body>
 </html>
