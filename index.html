@@ -228,7 +228,48 @@ function calculate(){
   el.addEventListener("input", calculate);
 });
 
+<script>
 function openMessenger(){
+
+  let type = typeEl.value;
+  let page = pageEl.value;
+  let content = contentEl.value;
+  let pcs = parseInt(pcsEl.value) || 1;
+
+  let typeText = type === "bw" ? "Black & White" : "Colored";
+  let pageText = page === "short" ? "Short / A4" : "Long";
+  let contentText =
+    content === "text" ? "Text Only" :
+    content === "mix" ? "Text + Image" :
+    "Full Image";
+
+  let back = backEl.checked ? "Yes" : "No";
+  let rush = rushEl.checked ? "Yes" : "No";
+
+  let total = totalEl.innerText;
+
+  let message =
+`🧾 A&S STORE ORDER
+
+📌 Print Type: ${typeText}
+📄 Paper Size: ${pageText}
+🖼️ Content: ${contentText}
+📦 PCS: ${pcs}
+🔁 Back-to-back: ${back}
+⚡ Rush: ${rush}
+
+💰 Total Amount: ₱${total}
+
+Please confirm my order. Thank you!`;
+
+  let encoded = encodeURIComponent(message);
+
+  // Messenger link (best working format for pages)
+  let url = "https://m.me/asmamburao?text=" + encoded;
+
+  window.open(url, "_blank");
+}
+</script>
   window.open(
     "https://www.messenger.com/t/asmamburao",
     "_blank"
