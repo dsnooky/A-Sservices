@@ -163,77 +163,65 @@ const rushEl = document.getElementById("rush");
 const priceEl = document.getElementById("price");
 const totalEl = document.getElementById("total");
 
+// 🧾 CENTRAL PRICING TABLE (EASY TO EDIT)
+const prices = {
+  bw: {
+    short: { text: 5, mix: 7, full: 10 },
+    long:  { text: 6, mix: 8, full: 12 },
+    back_fee: 2
+  },
+  color: {
+    short: { text: 7, mix: 15, full: 20 },
+    long:  { text: 8, mix: 18, full: 22 },
+    back_fee: 3
+  },
+  rush_fee: 5
+};
+
 function calculate(){
 
-let price = 0;
+  let type = typeEl.value;
+  let page = pageEl.value;
+  let content = contentEl.value;
 
-let type = typeEl.value;
-let page = pageEl.value;
-let content = contentEl.value;
+  let basePrice = prices[type][page][content];
 
-if(type === "bw"){
+  // back-to-back fee
+  if(backEl.checked){
+    basePrice += prices[type].back_fee;
+  }
 
-if(page === "short"){
-price = content==="text" ? 5 :
-        content==="mix" ? 7 : 10;
-}
-else{
-price = content==="text" ? 6 :
-        content==="mix" ? 8 : 12;
-}
+  // rush fee
+  if(rushEl.checked){
+    basePrice += prices.rush_fee;
+  }
 
-if(backEl.checked) price += 2;
+  let pcs = parseInt(pcsEl.value) || 1;
 
-}
-
-if(type === "color"){
-
-if(page === "short"){
-price = content==="text" ? 7 :
-        content==="mix" ? 15 : 20;
-}
-else{
-price = content==="text" ? 8 :
-        content==="mix" ? 18 : 22;
+  priceEl.innerText = basePrice;
+  totalEl.innerText = basePrice * pcs;
 }
 
-if(backEl.checked) price += 3;
-
-}
-
-if(rushEl.checked) price += 5;
-
-let pcs = parseInt(pcsEl.value) || 1;
-
-priceEl.innerText = price;
-totalEl.innerText = price * pcs;
-
-}
-
-[typeEl,pageEl,contentEl,pcsEl,backEl,rushEl]
-.forEach(el=>{
-
-el.addEventListener("change",calculate);
-el.addEventListener("input",calculate);
-
+// auto update
+[typeEl, pageEl, contentEl, pcsEl, backEl, rushEl]
+.forEach(el => {
+  el.addEventListener("change", calculate);
+  el.addEventListener("input", calculate);
 });
 
 function openMessenger(){
-
-window.open(
-"https://www.messenger.com/t/asmamburao",
-"_blank"
-);
-
+  window.open(
+    "https://www.messenger.com/t/asmamburao",
+    "_blank"
+  );
 }
 
 function goPricing(){
-window.location.href = "pricing.html";
+  window.location.href = "pricing.html";
 }
 
 calculate();
 
 </script>
-
 </body>
 </html>
