@@ -90,6 +90,25 @@ background:#0095dd;
 </head>
 
 <body>
+  <script>
+function calculate() {
+  let type = document.getElementById("printType").value;
+  let pcs = parseInt(document.getElementById("pcs").value);
+  let pages = parseInt(document.getElementById("pages").value);
+
+  let pricePerPage = 0;
+
+  if (type === "xerox_bw") pricePerPage = 2;
+  if (type === "xerox_color") pricePerPage = 5;
+  if (type === "text_only") pricePerPage = 3;
+  if (type === "text_image") pricePerPage = 7;
+  if (type === "full_image") pricePerPage = 10;
+
+  let total = pcs * pages * pricePerPage;
+
+  document.getElementById("result").innerText = "Total: ₱" + total;
+}
+</script>
 
 <div class="container">
 
