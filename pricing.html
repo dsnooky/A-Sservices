@@ -5,59 +5,169 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>A&S Store Pricing</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
 
-body{
+*{
 margin:0;
-font-family:Arial;
-background:#0f172a;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:
+linear-gradient(rgba(15,23,42,0.85), rgba(15,23,42,0.9)),
+url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1920&auto=format&fit=crop');
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
 color:white;
 padding:20px;
+min-height:100vh;
 }
 
 .container{
-max-width:700px;
+max-width:850px;
 margin:auto;
 }
 
-.card{
-background:rgba(255,255,255,0.05);
-padding:25px;
-border-radius:20px;
-border:1px solid rgba(255,255,255,0.1);
-margin-bottom:20px;
-}
-
-h1{
+.header{
 text-align:center;
-color:#00aaff;
-margin-bottom:20px;
+padding:30px 20px;
+margin-bottom:25px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(10px);
+border-radius:30px;
+border:1px solid rgba(255,255,255,0.1);
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
 }
 
-h2{
-color:#00d4ff;
+.header h1{
+font-size:40px;
+font-weight:700;
+background:linear-gradient(to right,#00d4ff,#8b5cf6,#ff4fd8);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+margin-bottom:10px;
 }
 
-.price-box{
-line-height:1.9;
+.header p{
+color:#dbeafe;
 font-size:16px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+}
+
+.card{
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(12px);
+padding:25px;
+border-radius:25px;
+border:1px solid rgba(255,255,255,0.1);
+box-shadow:0 10px 25px rgba(0,0,0,0.25);
+transition:0.3s;
+position:relative;
+overflow:hidden;
+}
+
+.card::before{
+content:'';
+position:absolute;
+width:200px;
+height:200px;
+background:rgba(255,255,255,0.08);
+border-radius:50%;
+top:-100px;
+right:-100px;
+}
+
+.card:hover{
+transform:translateY(-5px) scale(1.01);
+}
+
+.card h2{
+font-size:26px;
+margin-bottom:20px;
+color:#00d4ff;
+position:relative;
+z-index:1;
+}
+
+.section-title{
+margin-top:15px;
+font-size:18px;
+font-weight:700;
+color:#facc15;
+}
+
+.price-list{
+margin-top:10px;
+line-height:2;
+font-size:16px;
+position:relative;
+z-index:1;
+}
+
+.price-list span{
+float:right;
+font-weight:bold;
+color:#86efac;
+}
+
+.extra{
+margin-top:20px;
+padding:15px;
+border-radius:15px;
+background:rgba(0,0,0,0.25);
+line-height:1.8;
+font-size:15px;
+}
+
+.button-area{
+margin-top:30px;
+text-align:center;
 }
 
 button{
-width:100%;
-padding:15px;
-border:none;
-border-radius:12px;
-background:#00aaff;
+background:linear-gradient(135deg,#00aaff,#8b5cf6,#ff4fd8);
 color:white;
-font-size:16px;
+border:none;
+padding:16px 30px;
+font-size:17px;
 font-weight:bold;
+border-radius:15px;
 cursor:pointer;
-margin-top:20px;
+transition:0.3s;
+box-shadow:0 10px 20px rgba(0,0,0,0.3);
 }
 
 button:hover{
-background:#0095dd;
+transform:scale(1.05);
+}
+
+.footer{
+margin-top:30px;
+text-align:center;
+color:#cbd5e1;
+font-size:14px;
+}
+
+@media(max-width:600px){
+
+.header h1{
+font-size:30px;
+}
+
+.card{
+padding:20px;
+}
+
 }
 
 </style>
@@ -67,62 +177,90 @@ background:#0095dd;
 
 <div class="container">
 
+<div class="header">
+<h1>🖨️ A&S STORE PRICING</h1>
+<p>Fast • Affordable • Quality Printing Services</p>
+</div>
+
+<div class="grid">
+
 <div class="card">
+<h2>⚫ Xerox / Print (B&W)</h2>
 
-<h1>📌 A&S STORE PRICING</h1>
+<div class="section-title">SHORT / A4</div>
+<div class="price-list">
+<div>Text Only <span>₱5</span></div>
+<div>Text + Image <span>₱7</span></div>
+<div>Full Image <span>₱10</span></div>
+</div>
 
-<div class="price-box">
+<div class="section-title">LONG</div>
+<div class="price-list">
+<div>Text Only <span>₱6</span></div>
+<div>Text + Image <span>₱8</span></div>
+<div>Full Image <span>₱12</span></div>
+</div>
 
-<h2>XEROX / PRINT (B&W)</h2>
+<div class="extra">
+🔁 Back-to-back: +₱2
+</div>
+</div>
 
-<b>SHORT / A4</b><br>
-• Text Only — ₱5<br>
-• Text + Image — ₱7<br>
-• Full Image — ₱10<br><br>
+<div class="card">
+<h2>🌈 Color Print</h2>
 
-<b>LONG</b><br>
-• Text Only — ₱6<br>
-• Text + Image — ₱8<br>
-• Full Image — ₱12<br><br>
+<div class="section-title">SHORT / A4</div>
+<div class="price-list">
+<div>Text Only <span>₱7</span></div>
+<div>Text + Image <span>₱15</span></div>
+<div>Full Image <span>₱20</span></div>
+</div>
 
-+ ₱2 Back-to-back<br><br>
+<div class="section-title">LONG</div>
+<div class="price-list">
+<div>Text Only <span>₱8</span></div>
+<div>Text + Image <span>₱18</span></div>
+<div>Full Image <span>₱22</span></div>
+</div>
 
-<hr><br>
-
-<h2>COLOR PRINT</h2>
-
-<b>SHORT / A4</b><br>
-• Text Only — ₱7<br>
-• Text + Image — ₱15<br>
-• Full Image — ₱20<br><br>
-
-<b>LONG</b><br>
-• Text Only — ₱8<br>
-• Text + Image — ₱18<br>
-• Full Image — ₱22<br><br>
-
-+ ₱3 Back-to-back<br><br>
-
-+ ₱5 Rush Fee
+<div class="extra">
+🔁 Back-to-back: +₱3<br>
+⚡ Rush Fee: +₱5
+</div>
+</div>
 
 </div>
 
+<div class="button-area">
 <button onclick="goCalculator()">
-Open Auto Price Calculator
+🧮 Open Auto Price Calculator
 </button>
+</div>
 
+<div class="footer">
+© 2026 A&S Store • Printing • Xerox • Layout • Rush Services
 </div>
 
 </div>
 
 <script>
-
 function goCalculator(){
 window.location.href = "index.html";
 }
-
 </script>
 
 </body>
 </html>
+```
+
+## Design Features Added
+
+* 🌈 Colorful artistic gradient theme
+* 🖼️ Professional background image
+* ✨ Glassmorphism card design
+* 📱 Mobile responsive layout
+* 🎨 Animated hover effects
+* 🧮 Stylish calculator button
+* 💎 Modern premium look
+
 
