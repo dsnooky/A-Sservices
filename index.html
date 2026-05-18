@@ -1,13 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>A&S Auto Price Calculator</title>
 
 <style>
-
 body{
 margin:0;
 font-family:Arial;
@@ -85,33 +84,12 @@ margin-top:20px;
 button:hover{
 background:#0095dd;
 }
-
 </style>
 </head>
 
 <body>
-  <script>
-function calculate() {
-  let type = document.getElementById("printType").value;
-  let pcs = parseInt(document.getElementById("pcs").value);
-  let pages = parseInt(document.getElementById("pages").value);
-
-  let pricePerPage = 0;
-
-  if (type === "xerox_bw") pricePerPage = 2;
-  if (type === "xerox_color") pricePerPage = 5;
-  if (type === "text_only") pricePerPage = 3;
-  if (type === "text_image") pricePerPage = 7;
-  if (type === "full_image") pricePerPage = 10;
-
-  let total = pcs * pages * pricePerPage;
-
-  document.getElementById("result").innerText = "Total: ₱" + total;
-}
-</script>
 
 <div class="container">
-
 <div class="card">
 
 <h1>🧮 AUTO PRICE CALCULATOR</h1>
@@ -149,25 +127,17 @@ function calculate() {
 </div>
 
 <div class="result">
-
 <p>Price Per Page</p>
 <h2>₱<span id="price">0</span></h2>
 
 <p>Total Amount</p>
 <h2>₱<span id="total">0</span></h2>
-
 </div>
 
-<button onclick="openMessenger()">
-Order via Messenger
-</button>
-
-<button onclick="goPricing()">
-Back to Pricing
-</button>
+<button onclick="openMessenger()">Order via Messenger</button>
+<button onclick="goPricing()">Back to Pricing</button>
 
 </div>
-
 </div>
 
 <script>
@@ -182,7 +152,7 @@ const rushEl = document.getElementById("rush");
 const priceEl = document.getElementById("price");
 const totalEl = document.getElementById("total");
 
-// 🧾 CENTRAL PRICING TABLE (EASY TO EDIT)
+// PRICING TABLE
 const prices = {
   bw: {
     short: { text: 5, mix: 7, full: 10 },
@@ -205,15 +175,8 @@ function calculate(){
 
   let basePrice = prices[type][page][content];
 
-  // back-to-back fee
-  if(backEl.checked){
-    basePrice += prices[type].back_fee;
-  }
-
-  // rush fee
-  if(rushEl.checked){
-    basePrice += prices.rush_fee;
-  }
+  if(backEl.checked) basePrice += prices[type].back_fee;
+  if(rushEl.checked) basePrice += prices.rush_fee;
 
   let pcs = parseInt(pcsEl.value) || 1;
 
@@ -221,31 +184,24 @@ function calculate(){
   totalEl.innerText = basePrice * pcs;
 }
 
-// auto update
+// AUTO UPDATE
 [typeEl, pageEl, contentEl, pcsEl, backEl, rushEl]
 .forEach(el => {
   el.addEventListener("change", calculate);
   el.addEventListener("input", calculate);
 });
 
-<script>
+// MESSENGER ORDER
 function openMessenger(){
 
-  let type = typeEl.value;
-  let page = pageEl.value;
-  let content = contentEl.value;
-  let pcs = parseInt(pcsEl.value) || 1;
-
-  let typeText = type === "bw" ? "Black & White" : "Colored";
-  let pageText = page === "short" ? "Short / A4" : "Long";
+  let typeText = typeEl.value === "bw" ? "Black & White" : "Colored";
+  let pageText = pageEl.value === "short" ? "Short / A4" : "Long";
   let contentText =
-    content === "text" ? "Text Only" :
-    content === "mix" ? "Text + Image" :
+    contentEl.value === "text" ? "Text Only" :
+    contentEl.value === "mix" ? "Text + Image" :
     "Full Image";
 
-  let back = backEl.checked ? "Yes" : "No";
-  let rush = rushEl.checked ? "Yes" : "No";
-
+  let pcs = parseInt(pcsEl.value) || 1;
   let total = totalEl.innerText;
 
   let message =
@@ -255,33 +211,26 @@ function openMessenger(){
 📄 Paper Size: ${pageText}
 🖼️ Content: ${contentText}
 📦 PCS: ${pcs}
-🔁 Back-to-back: ${back}
-⚡ Rush: ${rush}
+🔁 Back-to-back: ${backEl.checked ? "Yes" : "No"}
+⚡ Rush: ${rushEl.checked ? "Yes" : "No"}
 
-💰 Total Amount: ₱${total}
+💰 Total: ₱${total}
 
-Please confirm my order. Thank you!`;
+Please confirm my order.`;
 
-  let encoded = encodeURIComponent(message);
-
-  // Messenger link (best working format for pages)
-  let url = "https://m.me/asmamburao?text=" + encoded;
+  let url = "https://m.me/asmamburao?text=" + encodeURIComponent(message);
 
   window.open(url, "_blank");
-}
-</script>
-  window.open(
-    "https://www.messenger.com/t/asmamburao",
-    "_blank"
-  );
 }
 
 function goPricing(){
   window.location.href = "pricing.html";
 }
 
+// INIT
 calculate();
 
 </script>
+
 </body>
 </html>
