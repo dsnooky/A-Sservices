@@ -1,52 +1,116 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A&S Auto Price Calculator</title>
+
+<title>A&S Print Hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-body{
+
+*{
 margin:0;
-font-family:Arial;
-background:#0f172a;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(-45deg,#0f172a,#1e3a8a,#7c3aed,#ec4899);
+background-size:400% 400%;
+animation:bg 15s ease infinite;
 color:white;
 padding:20px;
+min-height:100vh;
+overflow-x:hidden;
+position:relative;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+body::before{
+content:'';
+position:fixed;
+width:300px;
+height:300px;
+background:#00d4ff55;
+border-radius:50%;
+top:-100px;
+left:-100px;
+filter:blur(80px);
+z-index:-1;
+}
+
+body::after{
+content:'';
+position:fixed;
+width:300px;
+height:300px;
+background:#ff4fd855;
+border-radius:50%;
+bottom:-100px;
+right:-100px;
+filter:blur(80px);
+z-index:-1;
 }
 
 .container{
-max-width:500px;
+max-width:850px;
 margin:auto;
 }
 
 .card{
-background:rgba(255,255,255,0.05);
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(15px);
 padding:25px;
-border-radius:20px;
+border-radius:30px;
 border:1px solid rgba(255,255,255,0.1);
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
 }
 
 h1{
 text-align:center;
-color:#00aaff;
-margin-bottom:20px;
+font-size:38px;
+font-weight:700;
+background:linear-gradient(to right,#00d4ff,#ffffff,#ff4fd8);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+margin-bottom:10px;
+}
+
+.subtitle{
+text-align:center;
+color:#dbeafe;
+margin-bottom:25px;
 }
 
 label{
 display:block;
 margin-top:15px;
-margin-bottom:5px;
-font-weight:bold;
+margin-bottom:8px;
+font-weight:600;
 }
 
 select,
 input[type="number"]{
 width:100%;
-padding:12px;
+padding:14px;
 border:none;
-border-radius:10px;
+border-radius:15px;
 font-size:16px;
+background:rgba(255,255,255,0.1);
+color:white;
+outline:none;
+}
+
+select option{
+color:black;
 }
 
 .check{
@@ -56,43 +120,100 @@ align-items:center;
 gap:10px;
 }
 
-.result{
-margin-top:25px;
-padding:20px;
-background:rgba(0,170,255,0.15);
-border-radius:15px;
-text-align:center;
-}
-
-.result h2{
-color:#00d4ff;
-}
-
 button{
 width:100%;
-padding:15px;
+padding:16px;
 border:none;
-border-radius:12px;
-background:#00aaff;
+border-radius:16px;
+background:linear-gradient(135deg,#00aaff,#8b5cf6,#ff4fd8);
 color:white;
 font-size:16px;
 font-weight:bold;
 cursor:pointer;
 margin-top:20px;
+transition:0.3s;
+box-shadow:0 10px 20px rgba(0,0,0,0.3);
 }
 
 button:hover{
-background:#0095dd;
+transform:translateY(-3px) scale(1.02);
 }
+
+.add-btn{
+background:linear-gradient(135deg,#16a34a,#22c55e);
+}
+
+.remove-btn{
+background:linear-gradient(135deg,#dc2626,#ef4444);
+padding:10px;
+margin-top:10px;
+}
+
+.result{
+margin-top:25px;
+padding:25px;
+background:rgba(255,255,255,0.08);
+border-radius:20px;
+border:1px solid rgba(255,255,255,0.1);
+}
+
+.item{
+background:rgba(255,255,255,0.06);
+padding:20px;
+border-radius:20px;
+margin-top:15px;
+}
+
+.summary{
+line-height:2;
+}
+
+.total-box{
+margin-top:20px;
+padding:20px;
+text-align:center;
+border-radius:20px;
+background:rgba(0,212,255,0.15);
+}
+
+.total-box h2{
+font-size:35px;
+color:#00f7ff;
+}
+
+.footer{
+margin-top:25px;
+text-align:center;
+color:#cbd5e1;
+font-size:14px;
+}
+
+@media(max-width:600px){
+
+h1{
+font-size:30px;
+}
+
+.card{
+padding:20px;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
 <div class="container">
+
 <div class="card">
 
-<h1>🧮 AUTO PRICE CALCULATOR</h1>
+<h1>🖨️ A&S PRINT HUB</h1>
+
+<p class="subtitle">
+Fast • Affordable • Quality Printing Services
+</p>
 
 <label>Print Type</label>
 <select id="type">
@@ -126,109 +247,200 @@ background:#0095dd;
 <label for="rush">Rush Print (+₱5)</label>
 </div>
 
+<button class="add-btn" onclick="addItem()">
+➕ Add To Transaction
+</button>
+
 <div class="result">
-<p>Price Per Page</p>
-<h2>₱<span id="price">0</span></h2>
 
-<p>Total Amount</p>
-<h2>₱<span id="total">0</span></h2>
+<h2 style="text-align:center;margin-bottom:15px;">
+🛒 Transaction Summary
+</h2>
+
+<div id="items"></div>
+
+<div class="total-box">
+<p>Grand Total</p>
+<h2>₱<span id="grandTotal">0</span></h2>
 </div>
 
-<button onclick="openMessenger()">Order via Messenger</button>
-<button onclick="goPricing()">Back to Pricing</button>
+</div>
+
+<button onclick="openMessenger()">
+📩 Order via Messenger
+</button>
+
+<button onclick="goPricing()">
+📋 View Pricing
+</button>
+
+<div class="footer">
+© 2026 A&S Store • Printing • Xerox • Layout • Rush Services
+</div>
 
 </div>
+
 </div>
 
 <script>
 
-const typeEl = document.getElementById("type");
-const pageEl = document.getElementById("page");
-const contentEl = document.getElementById("content");
-const pcsEl = document.getElementById("pcs");
-const backEl = document.getElementById("back");
-const rushEl = document.getElementById("rush");
-
-const priceEl = document.getElementById("price");
-const totalEl = document.getElementById("total");
-
-// PRICING TABLE
 const prices = {
   bw: {
     short: { text: 5, mix: 7, full: 10 },
-    long:  { text: 6, mix: 8, full: 12 },
+    long: { text: 6, mix: 8, full: 12 },
     back_fee: 2
   },
   color: {
     short: { text: 7, mix: 15, full: 20 },
-    long:  { text: 8, mix: 18, full: 22 },
+    long: { text: 8, mix: 18, full: 22 },
     back_fee: 3
   },
   rush_fee: 5
 };
 
-function calculate(){
+let orders = [];
 
-  let type = typeEl.value;
-  let page = pageEl.value;
-  let content = contentEl.value;
+function calculatePrice(type, page, content, back, rush){
 
-  let basePrice = prices[type][page][content];
+  let price = prices[type][page][content];
 
-  if(backEl.checked) basePrice += prices[type].back_fee;
-  if(rushEl.checked) basePrice += prices.rush_fee;
+  if(back){
+    price += prices[type].back_fee;
+  }
 
-  let pcs = parseInt(pcsEl.value) || 1;
+  if(rush){
+    price += prices.rush_fee;
+  }
 
-  priceEl.innerText = basePrice;
-  totalEl.innerText = basePrice * pcs;
+  return price;
 }
 
-// AUTO UPDATE
-[typeEl, pageEl, contentEl, pcsEl, backEl, rushEl]
-.forEach(el => {
-  el.addEventListener("change", calculate);
-  el.addEventListener("input", calculate);
-});
+function addItem(){
 
-// MESSENGER ORDER
+  const type = document.getElementById("type").value;
+  const page = document.getElementById("page").value;
+  const content = document.getElementById("content").value;
+  const pcs = parseInt(document.getElementById("pcs").value) || 1;
+  const back = document.getElementById("back").checked;
+  const rush = document.getElementById("rush").checked;
+
+  const pricePerPage = calculatePrice(type,page,content,back,rush);
+  const total = pricePerPage * pcs;
+
+  orders.push({
+    type,
+    page,
+    content,
+    pcs,
+    back,
+    rush,
+    total
+  });
+
+  renderOrders();
+}
+
+function renderOrders(){
+
+  const itemsDiv = document.getElementById("items");
+  const grandTotalEl = document.getElementById("grandTotal");
+
+  itemsDiv.innerHTML = "";
+
+  let grandTotal = 0;
+
+  orders.forEach((item,index)=>{
+
+    grandTotal += item.total;
+
+    const typeText = item.type==="bw" ? "Black & White" : "Colored";
+    const pageText = item.page==="short" ? "Short / A4" : "Long";
+
+    const contentText =
+      item.content==="text" ? "Text Only" :
+      item.content==="mix" ? "Text + Image" :
+      "Full Image";
+
+    itemsDiv.innerHTML += `
+      <div class="item">
+
+        <div class="summary">
+          <b>Item ${index+1}</b><br>
+
+          📌 ${typeText}<br>
+          📄 ${pageText}<br>
+          🖼️ ${contentText}<br>
+          📦 PCS: ${item.pcs}<br>
+          🔁 Back-to-back: ${item.back ? "Yes":"No"}<br>
+          ⚡ Rush: ${item.rush ? "Yes":"No"}<br>
+
+          💰 Total: ₱${item.total}
+        </div>
+
+        <button class="remove-btn" onclick="removeItem(${index})">
+          Remove Item
+        </button>
+
+      </div>
+    `;
+  });
+
+  grandTotalEl.innerText = grandTotal;
+}
+
+function removeItem(index){
+  orders.splice(index,1);
+  renderOrders();
+}
+
 function openMessenger(){
 
-  let typeText = typeEl.value === "bw" ? "Black & White" : "Colored";
-  let pageText = pageEl.value === "short" ? "Short / A4" : "Long";
-  let contentText =
-    contentEl.value === "text" ? "Text Only" :
-    contentEl.value === "mix" ? "Text + Image" :
-    "Full Image";
+  if(orders.length===0){
+    alert("Please add an order first.");
+    return;
+  }
 
-  let pcs = parseInt(pcsEl.value) || 1;
-  let total = totalEl.innerText;
+  let grandTotal = 0;
 
-  let message =
-`🧾 A&S STORE ORDER
+  let message = "🧾 A&S STORE ORDER\n\n";
 
-📌 Print Type: ${typeText}
-📄 Paper Size: ${pageText}
-🖼️ Content: ${contentText}
-📦 PCS: ${pcs}
-🔁 Back-to-back: ${backEl.checked ? "Yes" : "No"}
-⚡ Rush: ${rushEl.checked ? "Yes" : "No"}
+  orders.forEach((item,index)=>{
 
-💰 Total: ₱${total}
+    grandTotal += item.total;
 
-Please confirm my order.`;
+    const typeText = item.type==="bw" ? "Black & White" : "Colored";
+    const pageText = item.page==="short" ? "Short / A4" : "Long";
 
-  let url = "https://m.me/asmamburao?text=" + encodeURIComponent(message);
+    const contentText =
+      item.content==="text" ? "Text Only" :
+      item.content==="mix" ? "Text + Image" :
+      "Full Image";
 
-  window.open(url, "_blank");
+    message +=
+`Item ${index+1}
+📌 ${typeText}
+📄 ${pageText}
+🖼️ ${contentText}
+📦 PCS: ${item.pcs}
+💰 ₱${item.total}
+
+`;
+  });
+
+  message += `🧮 GRAND TOTAL: ₱${grandTotal}
+
+Please confirm my order. Thank you!`;
+
+  const url =
+  "https://m.me/asmamburao?text=" +
+  encodeURIComponent(message);
+
+  window.open(url,"_blank");
 }
 
 function goPricing(){
-  window.location.href = "pricing.html";
+  window.location.href="pricing.html";
 }
-
-// INIT
-calculate();
 
 </script>
 
