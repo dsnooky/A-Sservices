@@ -33,6 +33,32 @@ max-width:850px;
 margin:auto;
 }
 
+/* NEW NAVIGATION */
+.navbar{
+display:flex;
+justify-content:center;
+gap:15px;
+margin-bottom:20px;
+flex-wrap:wrap;
+}
+
+.navbar a{
+text-decoration:none;
+padding:12px 24px;
+border-radius:12px;
+font-weight:600;
+color:white;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,0.1);
+transition:0.3s;
+}
+
+.navbar a:hover{
+background:linear-gradient(135deg,#00aaff,#8b5cf6,#ff4fd8);
+transform:translateY(-2px);
+}
+
 .header{
 text-align:center;
 padding:30px 20px;
@@ -176,6 +202,14 @@ padding:20px;
 <body>
 
 <div class="container">
+
+<!-- NEW HOME NAVIGATION -->
+<div class="navbar">
+<a href="home.html">🏠 Home</a>
+<a href="pricing.html">💵 Pricing</a>
+<a href="services.html">🛠 Services</a>
+<a href="contact.html">📞 Contact</a>
+</div>
 
 <div class="header">
 <h1>🖨️ A&S STORE PRICING</h1>
